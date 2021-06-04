@@ -90,13 +90,12 @@ console.log('Barney antes ', barney);
 console.log('Barney después', barneyModificado);
 console.log('Barney después 2', barneyModificado2);
 
-// const losSimsonsMasBarney = [...simpsons, barney];
-// console.log('Los Simpsons mas Barney', losSimsonsMasBarney);
+const losSimsonsMasBarney = [...simpsons, barney];
+console.log('Los Simpsons mas Barney', losSimsonsMasBarney);
 
-// const barneyMasLosSimsons = [barney, ...simpsons];
-// console.log('Barney mas Los Simpsons', barneyMasLosSimsons);
+const barneyMasLosSimsons = [barney, ...simpsons];
+console.log('Barney mas Los Simpsons', barneyMasLosSimsons);
 
-// const losSimpsons = losSimsonsMasBarney.filter(ls => ls.)
 
 
 

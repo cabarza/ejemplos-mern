@@ -13,8 +13,8 @@ const usuario = {
 
 // const nombre = usuario.nombre;
 const {nombre} = usuario;
-// const {nombre: nombreUsuario} = usuario;
+const {nombre: nombreUsuario} = usuario;
 
 console.log(nombre);
-// console.log(nombreUsuario);
+console.log(nombreUsuario);
 
