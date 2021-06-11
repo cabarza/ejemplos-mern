@@ -27,6 +27,7 @@ Una vez que ya conocemos Javascript revisaremos ejemplos de sintaxis y funcional
 - Use del gancho useState
 - Generación de formularios
 - Validación de formularios
+- Comunicación entre componentes utilizando useState
 
 # Express
 
