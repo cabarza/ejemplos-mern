@@ -2,7 +2,7 @@
 const Listado = (props) => {
 
     return (
-        <ul>
+        <ul  style={{border: "1px solid black"}}>
             {
                 props.listado.map((l, i) => <li key={i}>{l}</li>)
             }

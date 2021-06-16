@@ -21,7 +21,7 @@ const Buscador = (props) => {
     }
 
     return (
-        <div style={{textAlign:"center"}}>
+        <div style={{textAlign:"center", border: "1px solid red"}}>
             <h1> Bucador de Strings </h1>
             <Filtro filtro={filter} setFiltro={setFilter} buscar={buscar} limpiar={limpiar}/>
             <Listado listado={datos} />
