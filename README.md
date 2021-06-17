@@ -28,6 +28,7 @@ Una vez que ya conocemos Javascript revisaremos ejemplos de sintaxis y funcional
 - Generación de formularios
 - Validación de formularios
 - Comunicación entre componentes utilizando useState
+- Se sube proyecto inicial de ANIMALES. A este proyecto le iremos agregando mas información y funcionalidades a medida que vamos avanzando
 
 # Express
 
