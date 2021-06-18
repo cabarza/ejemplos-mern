@@ -1,7 +1,8 @@
+import { navigate } from '@reach/router';
 import {Form, FormGroup, Label, Input, Button, Row, Col} from 'reactstrap';
 
 const Formulario = ({animal, setAnimal, agregar}) => {
-    
+
     const actualizarFormulario = (e) => {
         const {name, value} = e.target;
         setAnimal({
@@ -11,12 +12,17 @@ const Formulario = ({animal, setAnimal, agregar}) => {
     }
 
     const guardar = (e) => {
-        agregar(animal);
+        agregar();
+        e.preventDefault();
+    }
+
+    const volver = (e) => {
+        navigate("/");
         e.preventDefault();
     }
 
     return (
-        <Form onSubmit={guardar} style={{margin:"5px"}}>
+        <Form onSubmit={guardar} style={{margin:"5px", border: "1px solid blue"}} >
             <h6 className="text-center">Formulario de animales</h6>
             <FormGroup>
                 <Label>Nombre: </Label>
@@ -33,6 +39,7 @@ const Formulario = ({animal, setAnimal, agregar}) => {
             <Row>
                 <Col className="text-center">
                     <Button type="submit" color="success" className="btn btn-block">Guardar</Button>
+                    <Button type="button" color="primary" className="btn btn-block" onClick={volver}>Volver</Button>
                 </Col>
             </Row>
         </Form>

@@ -1,7 +1,8 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {Row, Col} from 'reactstrap';
 import Formulario from './Formulario';
 import Swal from 'sweetalert2';
+import MiContexto from '../../context/MiContexto';
 
 const initialState = {
     nombre: '',
@@ -10,18 +11,19 @@ const initialState = {
 }
 
 const Animales = (props) => {
-    const [animal, setAnimal] = useState(initialState);
-    const [animales, setAnimales] = useState([{
-        nombre: 'Perro',
-        cantidadPatas: 4,
-        color: 'Negro'
-    }]);
 
-    const agregar = (animal) => {
+    const miContexto = useContext(MiContexto);
+    
+    const [animal, setAnimal] = useState(initialState);
+    const [animales, setAnimales] = useState([]);
+
+
+    const agregar = () => {
         const index = animales.findIndex(a => a.nombre === animal.nombre);
         if(index < 0) {
             setAnimales([...animales, animal])
             setAnimal(initialState);
+            miContexto.setCantidadAnimales(miContexto.cantidadAnimales + 1);
         } else {
             Swal.fire({
                 title: 'Animal duplicado',
@@ -32,16 +34,21 @@ const Animales = (props) => {
     }
 
     return (
-        <>
-            <Row style={{border: "1px solid red"}}>
-                <Col style={{border: "1px solid blue"}} className="text-center">
+        <div style={{border: "1px solid red"}}>
+            <Row>
+                <Col className="text-center">
                     <h3>Animales</h3>
+                </Col>
+                <Col>
+                    <p>Nombre: {animal.nombre}</p>
+                    <p>Color: {animal.color}</p>
+                    <p>Cantidad: {animal.cantidadPatas}</p>
                 </Col>
             </Row>
             <Row>
                 <Formulario animal={animal} setAnimal={setAnimal} agregar={agregar}/>
             </Row>
-            <Row style={{border: "1px solid green"}}>
+            <Row>
                 <table>
                     <thead>
                         <tr>
@@ -61,7 +68,7 @@ const Animales = (props) => {
                     </tbody>
                 </table>
             </Row>
-        </>
+        </div>
     );
 }
 
