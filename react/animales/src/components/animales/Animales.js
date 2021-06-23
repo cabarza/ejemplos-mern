@@ -37,7 +37,7 @@ const Animales = (props) => {
         <div style={{border: "1px solid red"}}>
             <Row>
                 <Col className="text-center">
-                    <h3>Animales</h3>
+                    <h3>Animales {props.texto}</h3>
                 </Col>
                 <Col>
                     <p>Nombre: {animal.nombre}</p>
