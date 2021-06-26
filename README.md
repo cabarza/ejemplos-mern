@@ -31,6 +31,12 @@ Una vez que ya conocemos Javascript revisaremos ejemplos de sintaxis y funcional
 - Se sube proyecto inicial de ANIMALES. A este proyecto le iremos agregando mas información y funcionalidades a medida que vamos avanzando
 
 # Express
+Pasos para crear mi primer ejemplo utilizando Express
+1.- Crear carpeta del proyecto
+2.- npm init -y     para inicializar mi proyecto
+3.- npm i express   instalo la dependencia de express
+4.- creo mi archivo index.js y configuro mi servidor (Si utilizo otro nombre debo modificar el main que está en el package.json)
+5.- npm start     para ejecutar mi aplicación, se puede utilizar nodemon para cargar los cambios automáticamente
 
 # MongoDB
 
