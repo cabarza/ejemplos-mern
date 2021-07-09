@@ -1,18 +1,20 @@
-import { navigate, Link } from '@reach/router';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import {Button, Col} from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPen, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const AnimalList = props => {
+function AnimalList(props) {
+
+    const history = useHistory();
 
     const ver =(e, id) => {
-        navigate('/ver/'+id);
+        history.push('/ver/'+id);
     }
 
     const modificar =(e, id) => {
-        navigate('/modificar/'+id);
+        history.push('/modificar/'+id);
     }
 
     const eliminar = (e, id) => {
@@ -58,6 +60,7 @@ const AnimalList = props => {
                         <td>{animal.nombre}</td>
                         <td>{animal.color}</td>
                         <td>{animal.tamanio}</td>
+                        <td>{animal.fecha?new Date(animal.fecha).toUTCString():''}</td>
                     </tr>)}
                 </tbody>
             </table>

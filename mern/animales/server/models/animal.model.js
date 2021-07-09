@@ -13,7 +13,8 @@ const AnimalSchema = new mongoose.Schema({
         type: String,
         required: [true, "Debe seleccionar el color del animal"]
     },
-    tamanio: String
+    tamanio: String,
+    fecha: Date
 }, {timestamps: true});
 
 const Animal = mongoose.model("Animal", AnimalSchema);

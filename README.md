@@ -43,3 +43,4 @@ Se sube proyecto de ejemplo de conexión con MongoDB
 
 # MERN
 Se agrega proyecto de ejemplo que incluye parte servidor y parte cliente con la estructura completa
+Se agrega ejemplo de login en el backend utilizando JWT
