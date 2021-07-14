@@ -41,7 +41,7 @@ const AnimalForm = props => {
 
     const crear = (e) => {
         inputs.fecha = parseDate(inputs.fecha);
-        axios.post('http://localhost:3001/api/animales', inputs)
+        axios.post('/api/animales', inputs)
             .then(resp => {
                 if(resp.data && resp.data.data){
                     volver(e)
@@ -55,7 +55,7 @@ const AnimalForm = props => {
 
     const editar = (e) => {
         inputs.fecha = parseDate(inputs.fecha);
-        axios.put('http://localhost:3001/api/animales/'+id, inputs)
+        axios.put('/api/animales/'+id, inputs)
         .then(resp => {
             const index = props.datos.findIndex(a => a._id === id);
             console.log('Index', index);
@@ -76,16 +76,16 @@ const AnimalForm = props => {
     }
 
     const volver = (e) => {
-        history.push('/');
+        history.push('/animales');
         // return <Redirect to="/" />
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3001/api/tipos_animales')
+        axios.get('/api/tipos_animales')
             .then(resp => setTipos(resp.data.data))
             .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar obtener el listado tipo de animales', 'error'))
         if(id) {
-            axios.get('http://localhost:3001/api/animales/'+id)
+            axios.get('/api/animales/'+id)
             .then(resp => setInputs(resp.data.data))
             .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar obtener el animal con id ' + props.id, 'error'))
             

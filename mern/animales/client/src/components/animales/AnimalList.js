@@ -10,11 +10,11 @@ function AnimalList(props) {
     const history = useHistory();
 
     const ver =(e, id) => {
-        history.push('/ver/'+id);
+        history.push('/animales/ver/'+id);
     }
 
     const modificar =(e, id) => {
-        history.push('/modificar/'+id);
+        history.push('/animales/modificar/'+id);
     }
 
     const eliminar = (e, id) => {
@@ -25,7 +25,7 @@ function AnimalList(props) {
             showCancelButton: true
         }).then(result => {
             if(result.value) {
-                axios.delete('http://localhost:3001/api/animales/'+id)
+                axios.delete('/api/animales/'+id)
                 .then(resp => {
                     const animales = props.datos.filter(a => a._id !== id);
                     props.setDatos(animales); 
@@ -36,7 +36,7 @@ function AnimalList(props) {
 
     return (
         <Col>
-            <Link to="/crear">
+            <Link to="/animales/crear">
                 <FontAwesomeIcon icon={faPlus}/>
             </Link>
             <table>
