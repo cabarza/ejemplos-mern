@@ -35,6 +35,6 @@ UsuarioSchema.pre('save', function(next) {
     });
 });
 
-const Usuario = mongoose.model("usuario", UsuarioSchema);
+const Usuario = mongoose.model("Usuario", UsuarioSchema);
 
 module.exports = Usuario;

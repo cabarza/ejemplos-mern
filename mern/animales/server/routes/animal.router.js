@@ -6,5 +6,6 @@ module.exports = app => {
     app.get("/api/animales/:id", authenticate, AnimalController.buscar);
     app.post("/api/animales", authenticate, AnimalController.crear);
     app.put("/api/animales/:id", authenticate, AnimalController.editar);
+    app.patch("/api/animales/:id", authenticate, AnimalController.adoptar);
     app.delete("/api/animales/:id", authenticate, AnimalController.elimnar);
 }

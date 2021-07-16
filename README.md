@@ -45,3 +45,4 @@ Se sube proyecto de ejemplo de conexión con MongoDB
 Se agrega proyecto de ejemplo que incluye parte servidor y parte cliente con la estructura completa
 Se agrega ejemplo de login en el backend utilizando JWT
 Se implementa login en el front y se realizan llamadas seguras utilizando el token obtenido
+Se implementa relación entre documentos para cargar usuarios propietarios de animales

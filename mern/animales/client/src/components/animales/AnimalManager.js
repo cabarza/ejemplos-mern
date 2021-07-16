@@ -10,19 +10,20 @@ const AnimalManager = props => {
     let { path, url } = useRouteMatch();
     
     const [datos, setDatos] = useState([]);
+    const [actualizar, setActualizar] = useState(false);
 
     useEffect(() =>{
         axios.get('/api/animales')
             .then(resp => setDatos(resp.data.data))
             .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar obtener el listado de animales', 'error'))
-    }, []);
+    }, [actualizar]);
 
     return (
         <Row>
             <Router>
                 <Switch>
                     <Route exact path={path}>
-                        <AnimalList datos={datos} setDatos={setDatos}/>
+                        <AnimalList datos={datos} setDatos={setDatos} actualizar={actualizar} setActualizar={setActualizar}/>
                     </Route>
                     <Route path={`${path}/crear`}>
                         <AnimalForm crear={true} datos={datos} setDatos={setDatos}/>
