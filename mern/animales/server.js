@@ -16,4 +16,4 @@ require("./server/routes/usuario.router")(app);
 require("./server/routes/tipos-animal.routes")(app);
 require("./server/routes/animal.router")(app);
 
-const server = app.listen(3001, () => console.log("Server listo"));
+const server = app.listen(8000, () => console.log("Server listo"));
