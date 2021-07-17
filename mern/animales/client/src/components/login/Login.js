@@ -18,7 +18,7 @@ const Login = () => {
     
     const login = (e) => {
         e.preventDefault();
-        axios.post('/login', inputs)
+        axios.post('/api/login', inputs)
             .then(resp => {
                 if(resp.data && !resp.data.error) {
                     history.push('/animales')

@@ -9,5 +9,5 @@ module.exports = app => {
     app.delete("/api/usuarios/:id", authenticate, UsuarioController.elimnar);
 
 
-    app.post("/login", UsuarioController.login);
+    app.post("/api/login", UsuarioController.login);
 }
