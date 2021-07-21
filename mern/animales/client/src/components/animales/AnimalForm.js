@@ -10,7 +10,7 @@ const initialState =  {
     tipo: '',
     color: '',
     tamanio: '',
-    fecha: new Date()
+    fecha: new Date().toLocaleDateString()
 }
 
 const AnimalForm = props => {
@@ -32,7 +32,7 @@ const AnimalForm = props => {
     }
 
     const parseDate = (fecha) => {
-        console.log(fecha);
+        console.log('FECHA:', fecha);
         if(fecha) {
             const fechaSplit = fecha.split("-");
             return new Date(Date.UTC(fechaSplit[0], fechaSplit[1]-1, fechaSplit[2]));
@@ -55,6 +55,7 @@ const AnimalForm = props => {
 
     const editar = (e) => {
         inputs.fecha = parseDate(inputs.fecha);
+        console.log('Inputs: ', inputs);
         axios.put('/api/animales/'+id, inputs)
         .then(resp => {
             const index = props.datos.findIndex(a => a._id === id);
@@ -86,7 +87,15 @@ const AnimalForm = props => {
             .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar obtener el listado tipo de animales', 'error'))
         if(id) {
             axios.get('/api/animales/'+id)
-            .then(resp => setInputs(resp.data.data))
+            .then(resp => {
+                console.log('Data: ', resp.data.data);
+                let fechaValor = new Date();
+                if(resp.data.data.fecha) {
+                    fechaValor = new Date(resp.data.data.fecha)
+                }
+                console.log('Fecha Valor: ', fechaValor.toLocaleDateString());
+                setInputs({...resp.data.data, ['fecha']: fechaValor.toLocaleDateString()});
+            })
             .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar obtener el animal con id ' + props.id, 'error'))
             
         }

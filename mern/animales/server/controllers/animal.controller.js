@@ -27,7 +27,7 @@ module.exports.crear = (req, res) => {
 };
 
 module.exports.editar = (req, res) => {
-    Animal.findByIdAndUpdate(req.params.id, req.body)
+    Animal.findByIdAndUpdate(req.params.id, req.body, {useFindAndModify: true})
         .then(r => res.json({data: r}))
         .catch(error => res.json({error: error, mensaje: "Ocurrió un error"}));
 };

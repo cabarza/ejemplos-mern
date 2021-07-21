@@ -40,6 +40,7 @@ function AnimalList(props) {
                 if(resp.data.error) {
                    Swal.fire('Error al adoptar', resp.data.mensaje, 'error');
                 } else {
+                    props.socket.emit('adoptar_event', {id: id});
                     props.setActualizar(!props.actualizar);
                 }
             });
@@ -77,7 +78,7 @@ function AnimalList(props) {
                         <td>{animal.nombre}</td>
                         <td>{animal.color}</td>
                         <td>{animal.tamanio}</td>
-                        <td>{animal.propietario.length>0?animal.propietario[0].nombre:''}</td>
+                        <td>{animal.propietario?.length>0?animal.propietario[0].nombre:''}</td>
                         <td>{animal.fecha?new Date(animal.fecha).toUTCString():''}</td>
                     </tr>)}
                 </tbody>
