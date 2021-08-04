@@ -1,12 +1,16 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from 'reactstrap';
 import Swal from 'sweetalert2';
+import UserContext from '../../context/userContext';
 
 const Login = () => {
     const history = useHistory();
     const [inputs, setInputs] = useState({email: '', password: ''});    
+    
+    const context = useContext(UserContext);
+
 
     const actualizarFormulario = (e) => {
         const {name, value} = e.target;
@@ -21,6 +25,7 @@ const Login = () => {
         axios.post('/api/login', inputs)
             .then(resp => {
                 if(resp.data && !resp.data.error) {
+                    context.setUsuario(resp.data.data);
                     history.push('/animales')
                 } else {
                     Swal.fire('Error', resp.data.mensaje, 'error');

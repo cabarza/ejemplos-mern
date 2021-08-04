@@ -4,8 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPen, faTrash, faPlus, faPaw, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import UserContext from '../../context/userContext';
+import { useContext } from 'react';
 
 function AnimalList(props) {
+    const context = useContext(UserContext);
 
     const history = useHistory();
 
@@ -48,9 +51,11 @@ function AnimalList(props) {
 
     return (
         <Col>
-            <Link to="/animales/crear">
-                <FontAwesomeIcon icon={faPlus}/>
-            </Link>
+            {context.usuario.tipo && context.usuario.tipo == 'ADMIN' && 
+                <Link to="/animales/crear">
+                    <FontAwesomeIcon icon={faPlus}/>
+                </Link>
+            }
             <Link to="/" style={{float: 'right'}}>
                 <FontAwesomeIcon icon={faSignOutAlt}/>
             </Link>
@@ -70,8 +75,12 @@ function AnimalList(props) {
                     {props.datos.map((animal, index) => <tr key={index}>
                         <td>
                             <Button color="primary" style={{margin:'2px'}} onClick={e => ver(e, animal._id)}><FontAwesomeIcon icon={faEye}/></Button>
-                            <Button color="secondary" style={{margin:'2px'}} onClick={e => modificar(e, animal._id)}><FontAwesomeIcon icon={faPen}/></Button>
-                            <Button color="danger" style={{margin:'2px'}} onClick={e => eliminar(e, animal._id)}><FontAwesomeIcon icon={faTrash}/></Button>
+                            {context.usuario.tipo && context.usuario.tipo == 'ADMIN' &&  
+                                <Button color="secondary" style={{margin:'2px'}} onClick={e => modificar(e, animal._id)}><FontAwesomeIcon icon={faPen}/></Button>
+                            }
+                            {context.usuario.tipo && context.usuario.tipo == 'ADMIN' && 
+                                <Button color="danger" style={{margin:'2px'}} onClick={e => eliminar(e, animal._id)}><FontAwesomeIcon icon={faTrash}/></Button>
+                            }   
                             <Button color="success" style={{margin:'2px'}} onClick={e => adoptar(e, animal._id)}><FontAwesomeIcon icon={faPaw}/></Button>
                         </td>
                         <td>{animal.tipo}</td>

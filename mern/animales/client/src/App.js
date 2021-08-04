@@ -3,9 +3,11 @@ import Login from './components/login/Login'
 import {BrowserRouter as Router, Route, Switch, useHistory} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import io from "socket.io-client";
+import UserContext from './context/userContext';
 
 function App() {
 
+  const [usuario, setUsuario] = useState({});
   const [socket] = useState(io.connect("/"));
  
 
@@ -15,18 +17,20 @@ function App() {
   }, [])
 
   return (
-    <div className="container">
-      <Router>
-          <Switch>
-            <Route exact path="/">
-              <Login />
-            </Route>
-            <Route path="/animales">
-              <AnimalManager socket={socket}/>
-            </Route>
-          </Switch>
-      </Router>
-    </div>
+    <UserContext.Provider value={{usuario, setUsuario}}>
+      <div className="container">
+        <Router>
+            <Switch>
+              <Route exact path="/">
+                <Login />
+              </Route>
+              <Route path="/animales">
+                <AnimalManager socket={socket}/>
+              </Route>
+            </Switch>
+        </Router>
+      </div>
+    </UserContext.Provider>
   );
 }
 

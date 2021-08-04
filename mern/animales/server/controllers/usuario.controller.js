@@ -3,6 +3,17 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { secret } = require('../config/jwt.config');
 
+module.exports.crearUsuarioInicial = () => {
+    Usuario.find({email: 'admin@admin.cl'}) 
+        .then(usuarios => {
+            if(!usuarios || usuarios.length == 0) {
+                Usuario.create({nombre: 'Administrador', email: 'admin@admin.cl', password: '12345678', confirmPassword: '12345678', tipo: 'ADMIN'})
+                    .then(usuario => console.log('Usuario creado exitosamente', usuario))
+                    .catch(err => console.log('Error al crear el usuario inicial', err))
+            }
+        })
+} 
+
 module.exports.listar = (req, res) => {
     Usuario.find()
         .then(r => res.json({ data: r }))
@@ -52,7 +63,8 @@ module.exports.login = (req, res) => {
                             const logguedUser = {
                                 _id: resp._id,
                                 nombre: resp.nombre,
-                                email: resp.email
+                                email: resp.email,
+                                tipo: resp.tipo
                             };
                             const newToken = jwt.sign(logguedUser, secret);
                             res.cookie("usertoken", newToken, secret, {

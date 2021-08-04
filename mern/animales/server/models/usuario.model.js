@@ -14,6 +14,10 @@ const UsuarioSchema = new mongoose.Schema({
         type: String,
         required: [true, "Debe ingesar su contraseña"]
     },
+    tipo: {
+      type: String,
+      required: [true, "el tipo es requerido"]
+    }
 }, {timestamps: true});
 
 UsuarioSchema.virtual('confirmPassword')
