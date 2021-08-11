@@ -20,6 +20,8 @@ const AnimalForm = props => {
     const [inputs, setInputs] = useState(initialState);
     const [tipos, setTipos] = useState([]);
 
+    const [file, setFile] = useState({});
+
     
 
 
@@ -65,6 +67,20 @@ const AnimalForm = props => {
             volver(e)
         })
         .catch(error => Swal.fire('Error al obtener los datos', 'Ha ocurrido un problema al intentar editar el animal', 'error'))
+    }
+
+    const subirArchivo = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append(
+            'file',
+            file,
+            file.name
+        )
+
+        axios.post('/api/file', formData, {enctype:"multipart/form-data"})
+            .then(resp => console.log(resp))
+            .catch(error => console.log(error));
     }
 
     const guardar = (e) => {
@@ -156,6 +172,12 @@ const AnimalForm = props => {
                     </Col>
                 </Row>
             </Form>
+            <Row>
+                <form onSubmit={subirArchivo} encType="multipart/form-data">
+                    <input type="file" name="file" onChange={e => setFile(e.target.files[0])}/>
+                    <Button type="submit">Subir Archivo</Button>
+                </form>
+            </Row>
         </Container>
     );
 }
